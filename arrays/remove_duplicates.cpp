@@ -9,16 +9,21 @@ class Solution {
 public:
     int removeDuplicates(vector<int>& nums) 
     {
+	printf("value at num[size]: %d", *(nums.end())); 
 	
-	for(auto i = nums.begin(); i != nums.end(); i++)
-	{		    
-	    	if(*i == *(i+1) && i+1 != nums.end())//prevents going into memory locations beyond .end() 
-		{	
-			nums.erase(i); //erased at memory location
+	 for(int i = 0 ; i < nums.size(); ++i)
+	{	
+		
+		printf("current num: %d", nums[i]);	    
+	    	if(nums[i] == nums[i+1] && i+1 < nums.size())
+		{	printf(".. duplicate: %d", nums[i+1]);
+			nums.erase(nums.begin()+i); //erased at memory location
 			i--;
 				
 		}
+		printf("\n");
 	}
+	printf("\n");
 	for(int &x: nums)printf("%d, ",x);
 
     	return nums.size();	    
@@ -33,9 +38,11 @@ int main()
 	
 	vector<int> test = {0,0,1,1,1,2,2,3,3,4};
 	newSolution.removeDuplicates(test);
-	printf("\n");
+	printf("\n");	
 
-	vector<int> test_two = {1,1,1,1,1,1,1,2};
+	
+
+	vector<int> test_two = {0,1,2,3,4,5,5,5,8,8};
 	newSolution.removeDuplicates(test_two);
 
 }
