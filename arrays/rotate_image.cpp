@@ -29,19 +29,22 @@ class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) 
     {	//rotate 90 degrees clockwise
+	//Trend: bottom column is always the first element of each row
 
 
 	   
-	     int row_size = matrix[0].size(); //pre exisitng row size 
-	    vector<int> column_of_interest;
-		int number_of_columns = matrix.size();
-	    //bottom column is always the first of each row		
+	   int row_size = matrix[0].size(); //pre exisitng row size 
+	   vector<int> column_of_interest;
+	   int number_of_columns = matrix.size();
+	   
+	   	    
 	   for(int col_index = number_of_columns-1 ; col_index >= 0; col_index--)
-	    {
+	   {
+		//start from the column at the back to the column at the front
 		column_of_interest = matrix[col_index];
-		    //start from the back 
+		
 	    	for(int i = 0; i < row_size; ++i)
-		{ //2d is of equal length and width
+		{	//push the items to the back of each column from the column of interest
 		
 			matrix[i].push_back(column_of_interest[i]);
 		}
@@ -49,17 +52,19 @@ public:
 
 	    	
 	    
-	    }
-	   //vector<int> temp_array;
-
+	   }
+	  
 	   for(int arr_index = 0; arr_index < number_of_columns; arr_index++)
-	   {
+	   {	
+		 //remove elements old elements from each array
+		 //This is equal in amount to the number of times we iterated through each row 
+		 //hence +row_size is the amount of elements to be removed each time
 	   	 matrix[arr_index].erase(matrix[arr_index].begin(),
 				 matrix[arr_index].begin()+row_size);
 	   }
 
 	   printf("result: ");
-	   print_shape(matrix);
+	   print_shape(matrix);//print result of the shape/matrix
 
 
     }
